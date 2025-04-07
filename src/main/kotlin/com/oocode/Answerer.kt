@@ -6,9 +6,11 @@ class Answerer {
         if (questionCopy.contains("What is your name?")) {
             return "Ed and Ilona"
         }
-        if ("\\d+\\s+\\+\\s+\\d+".toRegex().containsMatchIn(questionCopy) || "\\d+\\+\\d+".toRegex().containsMatchIn(questionCopy)) {
-            if (questionCopy.contains("What is", ignoreCase = true)) {
-                questionCopy = questionCopy.substringAfter("What is")
+        if ("-?\\d+\\s+\\+\\s+-?\\d+".toRegex().containsMatchIn(questionCopy) || "-?\\d+\\+-?\\d+".toRegex().containsMatchIn(questionCopy)) {
+            val index: Int
+            if (questionCopy.indexOf("What is", ignoreCase = true) != -1) {
+                index = questionCopy.indexOf("What is", ignoreCase = true)
+                questionCopy = questionCopy.removeRange(index, 7)
             }
             if (questionCopy.contains("?")) {
                 questionCopy = questionCopy.replace("?", "")
