@@ -12,9 +12,21 @@ class AnswererTest {
     }
 
     @Test
+    fun `just name`() {
+        val contents = Answerer().answerFor("name")
+        assertThat(contents, equalTo("I don't know"))
+    }
+
+    @Test
     fun `can pretend to do calculations`() {
         val contents = Answerer().answerFor("What is 2 + 2?")
         assertThat(contents, equalTo("4"))
+    }
+
+    @Test
+    fun `just number`() {
+        val contents = Answerer().answerFor("2")
+        assertThat(contents, equalTo("I don't know"))
     }
 
     @Test
