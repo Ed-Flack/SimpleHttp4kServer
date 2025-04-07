@@ -3,7 +3,7 @@ package com.oocode
 class Answerer {
     fun answerFor(question: String): String {
         var questionCopy = question
-        if (questionCopy.contains("What is your name?")) {
+        if (questionCopy.contains("What is your name", ignoreCase = true)) {
             return "Ed and Ilona"
         }
         if ("-?\\d+\\s+\\+\\s+-?\\d+".toRegex().containsMatchIn(questionCopy) || "-?\\d+\\+-?\\d+".toRegex().containsMatchIn(questionCopy)) {
