@@ -8,9 +8,10 @@ class Answerer {
         }
         if ("-?\\d+\\s+\\+\\s+-?\\d+".toRegex().containsMatchIn(questionCopy) || "-?\\d+\\+-?\\d+".toRegex().containsMatchIn(questionCopy)) {
             val index: Int
-            if (questionCopy.indexOf("What is", ignoreCase = true) != -1) {
-                index = questionCopy.indexOf("What is", ignoreCase = true)
-                questionCopy = questionCopy.removeRange(index, 7)
+            val whatIs = "What is"
+            if (questionCopy.indexOf(whatIs, ignoreCase = true) != -1) {
+                index = questionCopy.indexOf(whatIs, ignoreCase = true)
+                questionCopy = questionCopy.removeRange(index, whatIs.length)
             }
             if (questionCopy.contains("?")) {
                 questionCopy = questionCopy.replace("?", "")
