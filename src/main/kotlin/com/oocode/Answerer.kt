@@ -7,10 +7,9 @@ class Answerer {
             return "Ed and Ilona"
         }
         if ("-?\\d+\\s+\\+\\s+-?\\d+".toRegex().containsMatchIn(questionCopy) || "-?\\d+\\+-?\\d+".toRegex().containsMatchIn(questionCopy)) {
-            val index: Int
             val whatIs = "What is"
-            if (questionCopy.indexOf(whatIs, ignoreCase = true) != -1) {
-                index = questionCopy.indexOf(whatIs, ignoreCase = true)
+            val index = questionCopy.indexOf(whatIs, ignoreCase = true)
+            if (index != 1) {
                 questionCopy = questionCopy.removeRange(index, whatIs.length)
             }
             if (questionCopy.contains("?")) {
