@@ -4,7 +4,7 @@ class Answerer {
     fun answerFor(question: String): String {
         var questionCopy = question
         if (questionCopy.contains("What is your name", ignoreCase = true)) {
-            return "Flack Attack"
+            return "Chris and Ed"
         }
         if ("-?\\d+\\s+\\+\\s+-?\\d+".toRegex().containsMatchIn(questionCopy) || "-?\\d+\\+-?\\d+".toRegex().containsMatchIn(questionCopy)) {
             val whatIs = "What is"
