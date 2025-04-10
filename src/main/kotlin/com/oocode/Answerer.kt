@@ -12,16 +12,21 @@ class Answerer {
         if (question.contains("Which of the following numbers are primes:")) { //Which of the following numbers are primes: 13, 52, 21, 35, 59?
             questionCopy = questionCopy.replace("?", "")
             val x = questionCopy.split(": ")[1].split(",").map { v -> v.trim().toInt() }
+            val s = mutableListOf<String>()
             for (y in x) {
                 if (y > 1) {
+                    var divisible = false
                     for (i in 2..sqrt(y.toDouble()).toInt()) {
                         if (y % i == 0) {
-                            break
+                            divisible = true
                         }
-                        return y.toString()
+                    }
+                    if (!divisible) {
+                        s.add(y.toString())
                     }
                 }
             }
+            return s.joinToString(", ")
         }
         if (question.contains("Which of the following numbers is both a square and a cube:")) {
             questionCopy = questionCopy.replace("?", "")

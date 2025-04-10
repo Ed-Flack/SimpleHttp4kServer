@@ -60,9 +60,15 @@ class AnswererTest {
     }
 
     @Test
+    fun `can pretend to do calculations square and cube`() {
+        val contents = Answerer().answerFor("Which of the following numbers is both a square and a cube: 4096, 4289, 557, 3009, 1600, 4814, 729?")
+        assertThat(contents, equalTo("4096"))
+    }
+
+    @Test
     fun `can pretend to do calculations prime`() {
         val contents = Answerer().answerFor("Which of the following numbers are primes: 13, 52, 21, 35, 59?")
-        assertThat(contents, equalTo("13"))
+        assertThat(contents, equalTo("13, 59"))
     }
 
     @Test
