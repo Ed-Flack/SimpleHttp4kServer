@@ -9,6 +9,20 @@ class Answerer {
         if (questionCopy.contains("What is your name", ignoreCase = true)) {
             return "Chris and Ed"
         }
+        if (question.contains("Which of the following numbers are primes:")) { //Which of the following numbers are primes: 13, 52, 21, 35, 59?
+            questionCopy = questionCopy.replace("?", "")
+            val x = questionCopy.split(": ")[1].split(",").map { v -> v.trim().toInt() }
+            for (y in x) {
+                if (y > 1) {
+                    for (i in 2..sqrt(y.toDouble()).toInt()) {
+                        if (y % i == 0) {
+                            break
+                        }
+                        return y.toString()
+                    }
+                }
+            }
+        }
         if (question.contains("Which of the following numbers is both a square and a cube:")) {
             questionCopy = questionCopy.replace("?", "")
             val x = questionCopy.split(": ")[1].split(",").map { v -> v.trim().toInt() }
