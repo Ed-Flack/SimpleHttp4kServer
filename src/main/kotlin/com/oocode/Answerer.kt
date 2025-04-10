@@ -18,6 +18,18 @@ class Answerer {
             val parts = questionCopy.split("+")
             return (parts[0].trim().toInt() + parts[1].trim().toInt()).toString()
         }
+        if ("-?\\d+\\s+plus\\s+-?\\d+".toRegex().containsMatchIn(questionCopy) || "-?\\d+plus-?\\d+".toRegex().containsMatchIn(questionCopy)) {
+            val whatIs = "What is"
+            val index = questionCopy.indexOf(whatIs, ignoreCase = true)
+            if (index != 1) {
+                questionCopy = questionCopy.removeRange(index, whatIs.length)
+            }
+            if (questionCopy.contains("?")) {
+                questionCopy = questionCopy.replace("?", "")
+            }
+            val parts = questionCopy.split("plus")
+            return (parts[0].trim().toInt() + parts[1].trim().toInt()).toString()
+        }
         return "I don't know"
     }
 }

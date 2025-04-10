@@ -24,6 +24,24 @@ class AnswererTest {
     }
 
     @Test
+    fun `can pretend to do calculations 2`() {
+        val contents = Answerer().answerFor("What is 25 + 2?")
+        assertThat(contents, equalTo("27"))
+    }
+
+    @Test
+    fun `can pretend to do calculations 3`() {
+        val contents = Answerer().answerFor("What is 2 plus 2?")
+        assertThat(contents, equalTo("4"))
+    }
+
+    @Test
+    fun `can pretend to do calculations 4`() {
+        val contents = Answerer().answerFor("What is 25 plus 2?")
+        assertThat(contents, equalTo("27"))
+    }
+
+    @Test
     fun `just number`() {
         val contents = Answerer().answerFor("2")
         assertThat(contents, equalTo("I don't know"))
