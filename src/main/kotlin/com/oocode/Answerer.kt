@@ -1,10 +1,26 @@
 package com.oocode
 
+import kotlin.math.cbrt
+import kotlin.math.sqrt
+
 class Answerer {
     fun answerFor(question: String): String {
         var questionCopy = question
         if (questionCopy.contains("What is your name", ignoreCase = true)) {
             return "Chris and Ed"
+        }
+        if (question.contains("Which of the following numbers is both a square and a cube:")) {
+            questionCopy = questionCopy.replace("?", "")
+            val x = questionCopy.split(": ")[1].split(",").map { v -> v.trim().toInt() }
+            for (y in x) {
+                val cubeRoot = cbrt(y.toDouble())
+                if (cubeRoot == cubeRoot.toLong().toDouble()) {
+                    val sqrRoot = sqrt(y.toDouble())
+                    if (sqrRoot == sqrRoot.toLong().toDouble()) {
+                        return y.toString()
+                    }
+                }
+            }
         }
         if (questionCopy.contains("largest", ignoreCase = true)) {
             questionCopy = questionCopy.replace("?", "")
