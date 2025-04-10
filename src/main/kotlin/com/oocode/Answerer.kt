@@ -10,6 +10,10 @@ class Answerer {
             questionCopy = questionCopy.replace("?", "")
             return questionCopy.split(": ")[1].split(",").map { v -> v.trim().toInt() }.max().toString()
         }
+        if (questionCopy.contains("smallest", ignoreCase = true)) {
+            questionCopy = questionCopy.replace("?", "")
+            return questionCopy.split(": ")[1].split(",").map { v -> v.trim().toInt() }.min().toString()
+        }
         if ("-?\\d+\\s+\\+\\s+-?\\d+".toRegex().containsMatchIn(questionCopy) || "-?\\d+\\+-?\\d+".toRegex().containsMatchIn(questionCopy)) {
             val whatIs = "What is"
             val index = questionCopy.indexOf(whatIs, ignoreCase = true)
@@ -33,6 +37,54 @@ class Answerer {
             }
             val parts = questionCopy.split("plus")
             return (parts[0].trim().toInt() + parts[1].trim().toInt()).toString()
+        }
+        if ("-?\\d+\\s+-\\s+-?\\d+".toRegex().containsMatchIn(questionCopy) || "-?\\d+--?\\d+".toRegex().containsMatchIn(questionCopy)) {
+            val whatIs = "What is"
+            val index = questionCopy.indexOf(whatIs, ignoreCase = true)
+            if (index != 1) {
+                questionCopy = questionCopy.removeRange(index, whatIs.length)
+            }
+            if (questionCopy.contains("?")) {
+                questionCopy = questionCopy.replace("?", "")
+            }
+            val parts = questionCopy.split("-")
+            return (parts[0].trim().toInt() - parts[1].trim().toInt()).toString()
+        }
+        if ("-?\\d+\\s+minus\\s+-?\\d+".toRegex().containsMatchIn(questionCopy) || "-?\\d+minus-?\\d+".toRegex().containsMatchIn(questionCopy)) {
+            val whatIs = "What is"
+            val index = questionCopy.indexOf(whatIs, ignoreCase = true)
+            if (index != 1) {
+                questionCopy = questionCopy.removeRange(index, whatIs.length)
+            }
+            if (questionCopy.contains("?")) {
+                questionCopy = questionCopy.replace("?", "")
+            }
+            val parts = questionCopy.split("minus")
+            return (parts[0].trim().toInt() - parts[1].trim().toInt()).toString()
+        }
+        if ("-?\\d+\\s+\\*\\s+-?\\d+".toRegex().containsMatchIn(questionCopy) || "-?\\d+\\*-?\\d+".toRegex().containsMatchIn(questionCopy)) {
+            val whatIs = "What is"
+            val index = questionCopy.indexOf(whatIs, ignoreCase = true)
+            if (index != 1) {
+                questionCopy = questionCopy.removeRange(index, whatIs.length)
+            }
+            if (questionCopy.contains("?")) {
+                questionCopy = questionCopy.replace("?", "")
+            }
+            val parts = questionCopy.split("*")
+            return (parts[0].trim().toInt() * parts[1].trim().toInt()).toString()
+        }
+        if ("-?\\d+\\s+multiplied by\\s+-?\\d+".toRegex().containsMatchIn(questionCopy) || "-?\\d+multiplied by-?\\d+".toRegex().containsMatchIn(questionCopy)) {
+            val whatIs = "What is"
+            val index = questionCopy.indexOf(whatIs, ignoreCase = true)
+            if (index != 1) {
+                questionCopy = questionCopy.removeRange(index, whatIs.length)
+            }
+            if (questionCopy.contains("?")) {
+                questionCopy = questionCopy.replace("?", "")
+            }
+            val parts = questionCopy.split("multiplied by")
+            return (parts[0].trim().toInt() * parts[1].trim().toInt()).toString()
         }
         return "I don't know"
     }

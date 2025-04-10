@@ -41,6 +41,36 @@ class AnswererTest {
         assertThat(contents, equalTo("91"))
     }
 
+    @Test
+    fun `min`() {
+        val contents = Answerer().answerFor("Which of the following numbers is the smallest: 24, 90, 91?")
+        assertThat(contents, equalTo("24"))
+    }
+
+    @Test
+    fun `can pretend to do calculations minus`() {
+        val contents = Answerer().answerFor("What is 25 minus 2?")
+        assertThat(contents, equalTo("23"))
+    }
+
+    @Test
+    fun `can pretend to do calculations minus 2`() {
+        val contents = Answerer().answerFor("What is 25 - 2?")
+        assertThat(contents, equalTo("23"))
+    }
+
+    @Test
+    fun `can pretend to do calculations multi`() {
+        val contents = Answerer().answerFor("What is 25 * 2?")
+        assertThat(contents, equalTo("50"))
+    }
+
+    @Test
+    fun `can pretend to do calculations multi 2`() {
+        val contents = Answerer().answerFor("What is 25 multiplied by 2?")
+        assertThat(contents, equalTo("50"))
+    }
+
 
     @Test
     fun `can pretend to do calculations 4`() {
