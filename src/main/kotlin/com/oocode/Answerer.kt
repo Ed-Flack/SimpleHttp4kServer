@@ -6,6 +6,10 @@ class Answerer {
         if (questionCopy.contains("What is your name", ignoreCase = true)) {
             return "Chris and Ed"
         }
+        if (questionCopy.contains("largest", ignoreCase = true)) {
+            questionCopy = questionCopy.replace("?", "")
+            return questionCopy.split(": ")[1].split(",").map { v -> v.trim().toInt() }.max().toString()
+        }
         if ("-?\\d+\\s+\\+\\s+-?\\d+".toRegex().containsMatchIn(questionCopy) || "-?\\d+\\+-?\\d+".toRegex().containsMatchIn(questionCopy)) {
             val whatIs = "What is"
             val index = questionCopy.indexOf(whatIs, ignoreCase = true)

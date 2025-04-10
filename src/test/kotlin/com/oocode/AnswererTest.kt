@@ -36,6 +36,13 @@ class AnswererTest {
     }
 
     @Test
+    fun `max`() {
+        val contents = Answerer().answerFor("Which of the following numbers is the largest: 24, 90, 91?")
+        assertThat(contents, equalTo("91"))
+    }
+
+
+    @Test
     fun `can pretend to do calculations 4`() {
         val contents = Answerer().answerFor("What is 25 plus 2?")
         assertThat(contents, equalTo("27"))
