@@ -28,6 +28,13 @@ class Answerer {
             }
             return s.joinToString(", ")
         }
+        if (question.contains("-?\\d+\\s+plus\\s+-?\\d+\\s+plus\\s+-?\\d+".toRegex())) {
+            if (questionCopy.contains("?")) {
+                questionCopy = questionCopy.replace("?", "")
+            }
+            val parts = questionCopy.split(" ")
+            return (parts[2].trim().toInt() + parts[4].trim().toInt() + parts[6].trim().toInt()).toString()
+        }
         if (question.contains("Which of the following numbers is both a square and a cube:")) {
             questionCopy = questionCopy.replace("?", "")
             val x = questionCopy.split(": ")[1].split(",").map { v -> v.trim().toInt() }

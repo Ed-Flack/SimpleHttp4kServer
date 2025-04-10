@@ -72,6 +72,13 @@ class AnswererTest {
     }
 
     @Test
+    fun `can pretend to do calculations plusplus`() {
+        val contents = Answerer().answerFor("What is 28 plus 41 plus 6?")
+        assertThat(contents, equalTo("75"))
+    }
+
+
+    @Test
     fun `can pretend to do calculations  cube and square`() {
         val contents = Answerer().answerFor("Which of the following numbers is both a square and a cube: 2869, 4769, 4902, 144, 4096, 3200?")
         assertThat(contents, equalTo("4096"))
